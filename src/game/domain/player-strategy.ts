@@ -1,3 +1,5 @@
+import { Board, TileColor } from './game-engine';
+
 export interface PlayerStrategy {
-  nextMove(): number;
+  nextMove(board: Board): TileColor | undefined;
 }
