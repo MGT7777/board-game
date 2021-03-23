@@ -42,4 +42,53 @@ describe('GameEngine', () => {
     expect(board[0]).toHaveLength(2);
     board.flat().forEach((color) => expect(color).toBeLessThanOrEqual(3));
   });
+
+  it('should connect to origin', () => {
+    const inputBoard: Board = [
+      [1, 2],
+      [1, 3],
+    ];
+    gameEngine = new GameEngine(inputBoard);
+    gameEngine.connectTo(2);
+    const outputBoard: Board = gameEngine.getBoard();
+    const expected = [
+      [2, 2],
+      [2, 3],
+    ];
+
+    expect(outputBoard).toEqual(expected);
+  });
+
+  it('should not connect to anything but the origin point', () => {
+    const inputBoard: Board = [
+      [1, 2],
+      [3, 4],
+    ];
+    gameEngine = new GameEngine(inputBoard);
+    gameEngine.connectTo(5, [0, 0]);
+    const outputBoard: Board = gameEngine.getBoard();
+    const expected = [
+      [5, 2],
+      [3, 4],
+    ];
+
+    expect(outputBoard).toEqual(expected);
+  });
+
+  it('should connect to origin and finish', () => {
+    const inputBoard: Board = [
+      [1, 1],
+      [1, 2],
+    ];
+    gameEngine = new GameEngine(inputBoard);
+    gameEngine.connectTo(2, [0, 0]);
+    const outputBoard: Board = gameEngine.getBoard();
+    const expected = [
+      [2, 2],
+      [2, 2],
+    ];
+
+    expect(outputBoard).toEqual(expected);
+    expect(gameEngine.isDone()).toBeTruthy();
+  });
 });
