@@ -8,6 +8,11 @@ export class BoardDto {
     minimum: 2,
     maximum: 255,
     isArray: true,
+    example: [
+      [1, 2, 3],
+      [1, 2, 3],
+      [1, 2, 3],
+    ],
   })
   @IsArray({ each: true })
   @ArrayMinSize(2)
