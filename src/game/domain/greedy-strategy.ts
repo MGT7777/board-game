@@ -1,7 +1,9 @@
 import { PlayerStrategy } from './player-strategy';
 import { Board, Coordinates, TileColor } from './game-engine';
 import { BoardIterator, sameColorCondition } from './board-iterator';
+import { Injectable } from '@nestjs/common';
 
+@Injectable()
 export class GreedyStrategy implements PlayerStrategy {
   public nextMove(board: Board): TileColor | undefined {
     return GreedyStrategy.getMostSurroundedColor(board);
