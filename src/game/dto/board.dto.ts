@@ -7,7 +7,7 @@ export class BoardDto {
       'The game board represented as a two dimensional array of numbers. Each number represents a distinct color.',
     minimum: 2,
     maximum: 255,
-    isArray: true
+    isArray: true,
   })
   @IsArray({ each: true })
   @ArrayMinSize(2)
